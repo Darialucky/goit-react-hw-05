@@ -1,41 +1,35 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://api.themoviedb.org";
-
-const options = {
-  headers: {
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNzA0NDFmNTUyMWY3MDQzYzAzYWNjZTRkY2E3OTZhOSIsInN1YiI6IjY2MTNhMWJhYTZhNGMxMDE4NmJkMmFlNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.O2dSmYsEn5aOiB_kpxGboL6sqJqR5uepbZpWo1LOHdw",
-  },
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
+axios.defaults.params = {
+  accept: "application/json",
+  api_key: "82f5971bc75e2f9ab18ad7c9ed0f1e91",
+  language: "en-US",
+  Authorization:
+    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MmY1OTcxYmM3NWUyZjlhYjE4YWQ3YzllZDBmMWU5MSIsInN1YiI6IjY2MGVmOWM5NWFhZGM0MDE2MzY1NzFiYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.D0pYsEx0z8_jGrRQp0_v6nBtR6otQ_FkY1SbcKRkH6Y",
 };
 
-export const fetchTrendingMovies = async (time, page) => {
-  const url = `/3/trending/movie/${time}?language=en-US&page=${page}`;
-  const response = await axios.get(url, options);
-  return response.data;
+export const getMovies = async () => {
+  const { data } = await axios.get("trending/movie/day");
+  return data;
 };
 
-export const fetchMoviesByQuery = async (query, page) => {
-  const url = `/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`;
-  const response = await axios.get(url, options);
-  return response.data;
+export const getMovieByID = async (movie_id) => {
+  const { data } = await axios.get(`movie/${movie_id}`);
+  return data;
 };
 
-export const fetchMoviesById = async (id) => {
-  const url = `/3/movie/${id}?language=en-US`;
-  const response = await axios.get(url, options);
-  return response.data;
+export const getMoviesByQuery = async (query) => {
+  const { data } = await axios.get(`search/movie?query=${query}`);
+  return data;
 };
 
-export const fetchCredits = async (id) => {
-  const url = `/3/movie/${id}/credits?language=en-US`;
-  const response = await axios.get(url, options);
-  return response.data.cast;
+export const getMovieCredits = async (movie_id) => {
+  const { data } = await axios.get(`movie/${movie_id}/credits`);
+  return data;
 };
 
-export const fetchReviews = async (id, page) => {
-  console.log(id, page);
-  const url = `/3/movie/${id}/reviews?language=en-US&page=${page}`;
-  const response = await axios.get(url, options);
-  return response.data.results;
+export const getMovieReviews = async (movie_id) => {
+  const { data } = await axios.get(`movie/${movie_id}/reviews`);
+  return data;
 };

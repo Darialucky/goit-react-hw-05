@@ -33,26 +33,23 @@ const MovieCast = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <ErrorMessage />}
+      {error && <ErrorMessage>{error.message}</ErrorMessage>}
       {casts.length > 0 && (
         <ul className={css.castList}>
           {casts.map(({ id, profile_path, character, original_name }) => (
             <li key={id} className={css.castItem}>
-              {
-                <img
-                  src={
-                    profile_path
-                      ? `https://image.tmdb.org/t/p/w200${profile_path}}`
-                      : defaultImg
-                  }
-                  alt={original_name}
-                  width={200}
-                  height={300}
-                />
-              }
-
+              <img
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w200${profile_path}`
+                    : defaultImg
+                }
+                alt={original_name}
+                width={200}
+                height={300}
+              />
               <h3>{original_name}</h3>
-              <p>Character:{character}</p>
+              <p>Character: {character}</p>
             </li>
           ))}
         </ul>

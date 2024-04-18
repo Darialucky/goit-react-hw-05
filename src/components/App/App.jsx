@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import { Suspense, lazy } from "react";
-import MovieCast from "../MovieCast/MovieCast";
 import "./App.css";
 
 const HomePage = lazy(() => import("../../pages/HomePage"));
@@ -9,6 +8,7 @@ const MoviesPage = lazy(() => import("../../pages/MoviesPage"));
 const MovieDetailsPage = lazy(() => import("../../pages/MovieDetailsPage"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 const MovieReviews = lazy(() => import("../MovieReviews/MovieReviews"));
+const MovieCast = lazy(() => import("../MovieCast/MovieCast"));
 
 const App = () => {
   return (
@@ -28,4 +28,5 @@ const App = () => {
     </>
   );
 };
+
 export default App;

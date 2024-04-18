@@ -8,6 +8,7 @@
 .link {
   color: black;
   text-decoration: none;
+  font-weight: 800;
 }
 
 .link:hover {
@@ -15,5 +16,5 @@
 }
 
 .active {
-  color: orange;
+  color: #22fd51;
 }
